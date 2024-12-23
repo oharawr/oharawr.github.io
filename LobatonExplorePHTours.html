@@ -16,7 +16,16 @@
         color: white;
         padding: 10px 20px;
         display: flex;
-        justify-content: space-around;
+        align-items: center;
+        justify-content: space-between;
+    }
+    nav img.logo {
+        max-width: 50px;
+        margin-right: 10px;
+    }
+    nav .nav-links {
+        display: flex;
+        gap: 20px;
     }
     nav a {
         color: white;
@@ -30,15 +39,7 @@
     }
     header img.banner {
         width: 100%;
-        height: a50%;
-    }
-     header img.logo {
-        position: center;
-        top: 50px;
-        left: 50%;
-        transform: translateX(-50%);
-        max-width: 120px;
-        z-index: 10;
+        height: auto;
     }
     header .text-container {
         position: absolute;
@@ -83,14 +84,16 @@
 <body>
 
 <nav>
-    <a href="#home">Home</a>
-    <a href="#services">Services</a>
-    <a href="#promos">Promos</a>
-    <a href="#contact">Contact</a>
+    <img src="https://png.pngtree.com/png-clipart/20221219/ourmid/pngtree-philippines-new-watercolor-flag-brush-png-image_6529566.png" alt="Company Logo" class="logo">
+    <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#promos">Promos</a>
+        <a href="#contact">Contact</a>
+    </div>
 </nav>
 
 <header>
-    <img src="https://png.pngtree.com/png-clipart/20221219/ourmid/pngtree-philippines-new-watercolor-flag-brush-png-image_6529566.png" alt="Company Logo" class="logo">
     <img src="https://t3.ftcdn.net/jpg/11/02/60/50/360_F_1102605038_1Gksy4lnPrMAcaEVA7rnMwsqlGORtVXD.jpg" alt="Philippines Banner" class="banner">
     <div class="text-container">
         <h1>Explore PH Tours</h1>
