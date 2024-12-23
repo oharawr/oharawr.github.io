@@ -24,22 +24,29 @@
         font-weight: bold;
     }
     header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 20px;
-    }
-    header img.logo {
-        max-width: 100px;
-    }
-    header .text-container {
+        position: relative;
         text-align: center;
-        flex: 1;
+        color: white;
     }
     header img.banner {
         width: 100%;
         height: auto;
-        margin-top: 20px;
+    }
+    header img.logo {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 120px;
+        z-index: 10;
+    }
+    header .text-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        text-shadow: 2px 2px 5px black;
     }
     main {
         padding: 20px;
@@ -84,12 +91,12 @@
 
 <header>
     <img src="https://png.pngtree.com/png-clipart/20221219/ourmid/pngtree-philippines-new-watercolor-flag-brush-png-image_6529566.png" alt="Company Logo" class="logo">
+    <img src="https://img.freepik.com/premium-vector/philippines-map-flag-national-day-banner-design-flag-theme-art-web-background-vector-illustration_580616-876.jpg" alt="Philippines Banner" class="banner">
     <div class="text-container">
         <h1>Explore PH Tours</h1>
         <h2>Your Gateway to the Philippines!</h2>
     </div>
 </header>
-<img src="https://img.freepik.com/premium-vector/philippines-map-flag-national-day-banner-design-flag-theme-art-web-background-vector-illustration_580616-876.jpg" alt="Philippines Banner" class="banner">
 
 <main>
     <section id="services">
