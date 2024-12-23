@@ -11,14 +11,18 @@
         padding: 0;
     }
     header, footer {
-        background-color: #f8f9fa;
         text-align: center;
         padding: 20px;
     }
-    header img {
+    header img.logo {
         max-width: 100px;
         display: block;
         margin: 0 auto 10px;
+    }
+    header img.banner {
+        max-width: 100%;
+        height: auto;
+        margin: 10px 0;
     }
     main {
         padding: 20px;
@@ -48,20 +52,17 @@
 <body>
 
 <header>
-    <img src="https://png.pngtree.com/png-clipart/20221219/ourmid/pngtree-philippines-new-watercolor-flag-brush-png-image_6529566.png" alt="Company Logo">
-
-
+    <img src="https://png.pngtree.com/png-clipart/20221219/ourmid/pngtree-philippines-new-watercolor-flag-brush-png-image_6529566.png" alt="Company Logo" class="logo">
+    <img src="https://img.freepik.com/premium-vector/philippines-map-flag-national-day-banner-design-flag-theme-art-web-background-vector-illustration_580616-876.jpg" alt="Philippines Banner" class="banner">
     <h1>Your Gateway to the Philippines!</h1>
 </header>
 
 <main>
-
     <section>
         <h2>Our Services and Promotions</h2>
         <p>Explore our top-notch travel packages and exciting promotions to make your Philippine adventure unforgettable!</p>
         <p><a href="#" class="cta">Book Your Package Now!</a></p>
     </section>
-
 
     <section>
         <h2>Our Branches</h2>
@@ -84,13 +85,11 @@
 </main>
 
 <footer>
-
     <p>
         <a href="https://facebook.com" target="_blank">Facebook</a> |
         <a href="https://twitter.com" target="_blank">Twitter</a> |
         <a href="https://instagram.com" target="_blank">Instagram</a>
     </p>
-
     <p>&copy; 2024 Explore PH Tours. All Rights Reserved.</p>
 </footer>
 
