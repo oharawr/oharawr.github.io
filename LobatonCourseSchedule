@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2nd Term Course Schedule</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .note {
+            margin-top: 20px;
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>2nd Term Course Schedule</h1>
+    <h3>Blended Instructional Delivery Mode</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednesday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+                <th>Saturday</th>
+                <th>Sunday</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>7:00 AM - 8:00 AM</td>
+                <td>S5022</td>
+                <td>A121</td>
+                <td>MATH022</td>
+                <td>A122</td>
+                <td>S5022</td>
+                <td>V511</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>8:15 AM - 9:15 AM</td>
+                <td>CS107</td>
+                <td>A222</td>
+                <td>IT103</td>
+                <td>CS110-1</td>
+                <td>RS06</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>9:30 AM - 10:30 AM</td>
+                <td>CS107</td>
+                <td>A222</td>
+                <td>IT103</td>
+                <td>CS110-1</td>
+                <td>RS06</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>10:45 AM - 11:45 AM</td>
+                <td>-</td>
+                <td>A222</td>
+                <td>CS122</td>
+                <td>A221</td>
+                <td>ENG024</td>
+                <td>A133</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>12:00 PM - 1:00 PM</td>
+                <td>-</td>
+                <td>IT103L</td>
+                <td>CS122</td>
+                <td>A221</td>
+                <td>ENG024</td>
+                <td>V304</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>2:30 PM - 5:00 PM</td>
+                <td>IT103L</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>5:00 PM - 6:00 PM</td>
+                <td>CS107L</td>
+                <td>A222</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="note">Note: Rooms starting with "V" are virtual rooms intended for online sessions.</p>
+</body>
+</html>
