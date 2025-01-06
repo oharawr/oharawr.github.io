@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.box {
+    padding: 1px 0;
+    color: black;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.one {
+    background-color: rgb(255, 58, 58);
+    font-size: 50px;
+}
+
+.two {
+    background-color: rgb(52, 52, 252);
+    font-size: 50px;
+}
