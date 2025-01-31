@@ -48,7 +48,11 @@ section img {
     display: block;
     margin: 10px auto;
     border-radius: 10px;
+    object-fit: contain;
+    max-height: 300px;
+    width: auto;
 }
+
 h1, h2 {
     color: #ff4081;
 }
