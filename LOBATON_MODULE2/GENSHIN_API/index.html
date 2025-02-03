@@ -3,18 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genshin Impact Characters</title>
+    <title>🌸 Genshin Impact Characters 🌸</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f9f3f3;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-image: url('yaemiko.gif'); /* Cute pastel GIF background */
+            background-size: cover;
             color: #6b5b95;
             text-align: center;
             padding: 20px;
+            margin: 0;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white overlay */
+            z-index: 1;
         }
         h1 {
-            font-size: 2.5em;
+            font-size: 3em;
             color: #ff85a2;
+            text-shadow: 2px 2px 4px rgba(255, 133, 162, 0.5);
+            margin: 20px 0;
+            position: relative;
+            z-index: 2;
         }
         .container {
             display: flex;
@@ -22,14 +39,17 @@
             justify-content: center;
             gap: 20px;
             padding: 20px;
+            position: relative;
+            z-index: 2;
         }
         .card {
-            background-color: #fff0f5;
+            background-color: rgba(255, 240, 245, 0.9);
             border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 200px;
             padding: 15px;
             transition: transform 0.3s ease;
+            backdrop-filter: blur(6px); 
         }
         .card:hover {
             transform: scale(1.05);
@@ -55,17 +75,43 @@
             height: 50px;
             animation: spin 2s linear infinite;
             margin: 20px auto;
+            position: relative;
+            z-index: 2;
         }
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        .emoji {
+            font-size: 1.5em;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #ff85a2;
+            position: relative;
+            z-index: 2;
+        }
+        .content-container {
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 1200px;
+            position: relative;
+            z-index: 2;
+        }
     </style>
 </head>
 <body>
-    <h1>Genshin Impact Characters</h1>
-    <div class="container" id="characters-container">
-        <div class="loader" id="loader"></div>
+    <div class="content-container">
+        <h1>🌸 Genshin Impact Characters 🌸</h1>
+        <div class="container" id="characters-container">
+            <div class="loader" id="loader"></div>
+        </div>
+        <div class="footer">
+            Made with 💖 by your favorite Genshin fan! ✨
+        </div>
     </div>
 
     <script>
@@ -88,10 +134,10 @@
                 img.alt = character.name;
 
                 const name = document.createElement('h2');
-                name.textContent = character.name;
+                name.innerHTML = `${character.name} 🌟`;
 
                 const description = document.createElement('p');
-                description.textContent = character.description;
+                description.innerHTML = `${character.description} 💫`;
 
                 card.appendChild(img);
                 card.appendChild(name);
