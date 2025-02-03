@@ -3,21 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smash or Pass - Genshin Impact</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Genshin Impact Characters</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f3f3;
+            color: #6b5b95;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #ff85a2;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .card {
+            background-color: #fff0f5;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            padding: 15px;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .card h2 {
+            font-size: 1.2em;
+            color: #ff85a2;
+            margin: 10px 0;
+        }
+        .card p {
+            font-size: 0.9em;
+            color: #6b5b95;
+        }
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #ff85a2;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Smash or Pass</h1>
-        <div id="characterDisplay">
-          
-        </div>
-        <div class="buttons">
-            <button id="smashButton">Smash 💖</button>
-            <button id="passButton">Pass 🚫</button>
-        </div>
-        <p id="resultMessage"></p>
+    <h1>Genshin Impact Characters</h1>
+    <div class="container" id="characters-container">
+        <div class="loader" id="loader"></div>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        async function fetchCharacters() {
+            const response = await fetch('https://publicapi.dev/genshin-impact-api/characters');
+            const data = await response.json();
+            return data;
+        }
+
+        function displayCharacters(characters) {
+            const container = document.getElementById('characters-container');
+            container.innerHTML = ''; // Clear the loader
+
+            characters.forEach(character => {
+                const card = document.createElement('div');
+                card.className = 'card';
+
+                const img = document.createElement('img');
+                img.src = character.image;
+                img.alt = character.name;
+
+                const name = document.createElement('h2');
+                name.textContent = character.name;
+
+                const description = document.createElement('p');
+                description.textContent = character.description;
+
+                card.appendChild(img);
+                card.appendChild(name);
+                card.appendChild(description);
+                container.appendChild(card);
+            });
+        }
+
+        async function init() {
+            const characters = await fetchCharacters();
+            displayCharacters(characters);
+        }
+
+        init();
+    </script>
 </body>
 </html>
