@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather API</title>
+</head>
+<body>
+    <h1>Weather API</h1>
+    <button onclick="callAPI()">Fetch Weather Data</button>
+    <div>
+        <h2>Weather Details</h2>
+        <p><strong>City:</strong> <span id="weather_city">--</span></p>
+        <p><strong>Temperature:</strong> <span id="weather_temperature">--</span></p>
+        <p><strong>Condition:</strong> <span id="weather_condition">--</span></p>
+    </div>
+
+    <script>
+        const apiKey = 'YOUR_API_KEY'; 
+        const city = 'London';
+
+        function callAPI() {
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("weather_city").textContent = data.name || 'N/A';
+                    document.getElementById("weather_temperature").textContent = `${data.main.temp}°C` || 'N/A';
+                    document.getElementById("weather_condition").textContent = data.weather[0].description || 'N/A';
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+    </script>
+</body>
+</html>
