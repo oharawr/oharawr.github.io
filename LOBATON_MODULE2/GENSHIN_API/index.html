@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌸 Genshin Impact Characters 🌸</title>
+    <title>Genshin Characters API</title>
     <style>
         body {
             font-family: 'Comic Sans MS', cursive, sans-serif;
@@ -93,63 +93,47 @@
     </style>
 </head>
 <body>
-    <h1>🌸 Genshin Impact Characters 🌸</h1>
-    <div class="container" id="characters-container">
-        <div class="loader" id="loader"></div>
-    </div>
-    <div class="footer">
-        Made with 💖 by your favorite Genshin fan! ✨
-    </div>
-
+    <h1>Genshin Impact Characters</h1>
+    <div class="loader" id="loader"></div>
+    <div class="container" id="character-container"></div>
+    <div class="footer">Made with ❤️ for Genshin fans!</div>
+    
     <script>
-        async function fetchCharacters() {
-            try {
-                const response = await fetch('https://genshin.dev/api/characters');
-                const characterNames = await response.json();
-                const characterDetails = await Promise.all(
-                    characterNames.map(async (name) => {
-                        const charResponse = await fetch(`https://genshin.dev/api/characters/${name}`);
-                        return charResponse.json();
-                    })
-                );
-                return characterDetails;
-            } catch (error) {
-                console.error('Error fetching characters:', error);
-                return [];
+        document.addEventListener("DOMContentLoaded", async () => {
+            const API_URL = "https://genshin-db-api.vercel.app/api/characters";
+            const container = document.getElementById("character-container");
+            const loader = document.getElementById("loader");
+            
+            async function fetchCharacters() {
+                try {
+                    const response = await fetch(API_URL);
+                    const characters = await response.json();
+                    displayCharacters(characters);
+                } catch (error) {
+                    console.error("Error fetching data:", error);
+                    container.innerHTML = "Failed to load characters.";
+                } finally {
+                    loader.style.display = "none";
+                }
             }
-        }
-
-        function displayCharacters(characters) {
-            const container = document.getElementById('characters-container');
-            container.innerHTML = ''; // Clear the loader
-
-            characters.forEach(character => {
-                const card = document.createElement('div');
-                card.className = 'card';
-
-                const img = document.createElement('img');
-                img.src = character.images.icon;
-                img.alt = character.name;
-
-                const name = document.createElement('h2');
-                name.innerHTML = `${character.name} 🌟`;
-
-                const description = document.createElement('p');
-                description.innerHTML = `${character.vision} - ${character.weapon}`;
-
-                card.appendChild(img);
-                card.appendChild(name);
-                card.appendChild(description);
-                container.appendChild(card);
-            });
-        }
-
-        async function init() {
-            const characters = await fetchCharacters();
-            displayCharacters(characters);
-        }
-
-        init();
+            
+            function displayCharacters(characters) {
+                characters.forEach(charData => {
+                    const card = document.createElement("div");
+                    card.classList.add("card");
+                    
+                    card.innerHTML = `
+                        <img src="${charData.images.icon}" alt="${charData.name}">
+                        <h2>${charData.name}</h2>
+                        <p>Vision: ${charData.vision}</p>
+                        <p>Weapon: ${charData.weapon}</p>
+                    `;
+                    container.appendChild(card);
+                });
+            }
+            
+            await fetchCharacters();
+        });
     </script>
 </body>
 </html>
