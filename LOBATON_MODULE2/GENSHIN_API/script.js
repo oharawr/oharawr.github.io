@@ -1,39 +1,39 @@
-document.getElementById('searchButton').addEventListener('click', function() {
-    const characterName = document.getElementById('searchInput').value.trim().toLowerCase();
-    if (characterName) {
-        fetchCharacterData(characterName);
-    } else {
-        alert('Please enter a character name.');
+const characterContainer = document.getElementById("character-container");
+
+async function fetchCharacter() {
+    try {
+        const response = await fetch("https://api.genshin.dev/characters");
+        const characters = await response.json();
+        const randomCharacter = characters[Math.floor(Math.random() * characters.length)];
+
+        const characterData = await fetch(`https://api.genshin.dev/characters/${randomCharacter}`);
+        const characterInfo = await characterData.json();
+
+        displayCharacter(characterInfo);
+    } catch (error) {
+        console.error("Error fetching character:", error);
+        characterContainer.innerHTML = "<p>Failed to load character. Try again!</p>";
     }
-});
-
-function fetchCharacterData(characterName) {
-    const apiUrl = `https://publicapi.dev/genshin-impact-api/characters/${characterName}`;
-
-    fetch(apiUrl)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Character not found');
-            }
-            return response.json();
-        })
-        .then(data => {
-            displayCharacterInfo(data);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            document.getElementById('characterInfo').innerHTML = `<p>${error.message}</p>`;
-        });
 }
 
-function displayCharacterInfo(character) {
-    const characterInfoDiv = document.getElementById('characterInfo');
-    characterInfoDiv.innerHTML = `
+function displayCharacter(character) {
+    characterContainer.innerHTML = `
+        <img src="https://api.genshin.dev/characters/${character.id}/icon" alt="${character.name}">
         <h2>${character.name}</h2>
-        <img src="${character.image}" alt="${character.name}">
-        <p><strong>Vision:</strong> ${character.vision}</p>
-        <p><strong>Weapon:</strong> ${character.weapon}</p>
-        <p><strong>Nation:</strong> ${character.nation}</p>
-        <p><strong>Description:</strong> ${character.description}</p>
+        <p>Element: ${character.vision}</p>
+        <p>Weapon: ${character.weapon}</p>
     `;
 }
+
+function smash() {
+    alert("You chose Smash! 💖");
+    fetchCharacter();
+}
+
+function pass() {
+    alert("You chose Pass ❌");
+    fetchCharacter();
+}
+
+fetchCharacter();
+
