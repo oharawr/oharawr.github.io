@@ -9,6 +9,7 @@
             font-family: 'Comic Sans MS', cursive, sans-serif;
             background-image: url('yaemiko.gif');
             background-size: cover;
+            background-position: center;
             color: #6b5b95;
             text-align: center;
             padding: 20px;
@@ -22,8 +23,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(255, 255, 255, 0.6);
-            background-size: cover;
+            background: rgba(255, 255, 255, 0.5);
             z-index: 1;
         }
         h1 {
@@ -50,7 +50,7 @@
             width: 200px;
             padding: 15px;
             transition: transform 0.3s ease;
-            backdrop-filter: blur(6px); 
+            backdrop-filter: blur(6px);
         }
         .card:hover {
             transform: scale(1.05);
@@ -83,9 +83,6 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        .emoji {
-            font-size: 1.5em;
-        }
         .footer {
             margin-top: 20px;
             font-size: 1.2em;
@@ -93,33 +90,33 @@
             position: relative;
             z-index: 2;
         }
-        .content-container {
-            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
-            border-radius: 15px;
-            padding: 20px;
-            margin: 20px auto;
-            max-width: 1200px;
-            position: relative;
-            z-index: 2;
-        }
     </style>
 </head>
 <body>
-    <div class="content-container">
-        <h1>🌸 Genshin Impact Characters 🌸</h1>
-        <div class="container" id="characters-container">
-            <div class="loader" id="loader"></div>
-        </div>
-        <div class="footer">
-            Made with 💖 by your favorite Genshin fan! ✨
-        </div>
+    <h1>🌸 Genshin Impact Characters 🌸</h1>
+    <div class="container" id="characters-container">
+        <div class="loader" id="loader"></div>
+    </div>
+    <div class="footer">
+        Made with 💖 by your favorite Genshin fan! ✨
     </div>
 
     <script>
         async function fetchCharacters() {
-            const response = await fetch('https://publicapi.dev/genshin-impact-api/characters');
-            const data = await response.json();
-            return data;
+            try {
+                const response = await fetch('https://genshin.dev/api/characters');
+                const characterNames = await response.json();
+                const characterDetails = await Promise.all(
+                    characterNames.map(async (name) => {
+                        const charResponse = await fetch(`https://genshin.dev/api/characters/${name}`);
+                        return charResponse.json();
+                    })
+                );
+                return characterDetails;
+            } catch (error) {
+                console.error('Error fetching characters:', error);
+                return [];
+            }
         }
 
         function displayCharacters(characters) {
@@ -131,14 +128,14 @@
                 card.className = 'card';
 
                 const img = document.createElement('img');
-                img.src = character.image;
+                img.src = character.images.icon;
                 img.alt = character.name;
 
                 const name = document.createElement('h2');
                 name.innerHTML = `${character.name} 🌟`;
 
                 const description = document.createElement('p');
-                description.innerHTML = `${character.description} 💫`;
+                description.innerHTML = `${character.vision} - ${character.weapon}`;
 
                 card.appendChild(img);
                 card.appendChild(name);
