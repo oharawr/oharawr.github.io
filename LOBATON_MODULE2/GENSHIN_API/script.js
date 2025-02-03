@@ -8,8 +8,7 @@ document.getElementById('searchButton').addEventListener('click', function() {
 });
 
 function fetchCharacterData(characterName) {
-   
-    const apiUrl = `https://api.genshin.dev/characters/${characterName}`;
+    const apiUrl = `https://gshimpact.vercel.app/api/characters/${characterName}`;
 
     fetch(apiUrl)
         .then(response => {
@@ -31,7 +30,7 @@ function displayCharacterInfo(character) {
     const characterInfoDiv = document.getElementById('characterInfo');
     characterInfoDiv.innerHTML = `
         <h2>${character.name}</h2>
-        <img src="https://api.genshin.dev/characters/${character.name}/icon" alt="${character.name}">
+        <img src="${character.icon}" alt="${character.name}">
         <p><strong>Vision:</strong> ${character.vision}</p>
         <p><strong>Weapon:</strong> ${character.weapon}</p>
         <p><strong>Nation:</strong> ${character.nation}</p>
