@@ -117,54 +117,52 @@
         <div class="container" id="character-container"></div>
         <div class="footer">Made with ❤️ for Genshin fans!</div>
     </div>
-    
     <script>
-        document.addEventListener("DOMContentLoaded", async () => {
-            // Using a CORS proxy
-            const API_URL = "https://cors-anywhere.herokuapp.com/https://api.genshin.dev/characters";
-            const container = document.getElementById("character-container");
-            const loader = document.getElementById("loader");
-            
-            async function fetchCharacters() {
-                try {
-                    const response = await fetch(API_URL);
-                    if (!response.ok) throw new Error("Failed to fetch data");
-                    const characters = await response.json();
-                    await displayCharacters(characters);
-                } catch (error) {
-                    console.error("Error fetching data:", error);
-                    container.innerHTML = "<p style='color: red;'>Failed to load characters. Please try again later.</p>";
-                } finally {
-                    loader.style.display = "none";
-                }
+    document.addEventListener("DOMContentLoaded", async () => {
+    // Use a CORS proxy to bypass CORS issues
+    const API_URL = "https://cors-anywhere.herokuapp.com/https://api.genshin.dev/characters";
+    const container = document.getElementById("character-container");
+    const loader = document.getElementById("loader");
+    
+    async function fetchCharacters() {
+        try {
+            const response = await fetch(API_URL);
+            if (!response.ok) throw new Error("Failed to fetch data");
+            const characters = await response.json();
+            await displayCharacters(characters);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+            container.innerHTML = "<p style='color: red;'>Failed to load characters. Please try again later.</p>";
+        } finally {
+            loader.style.display = "none";
+        }
+    }
+    
+    async function displayCharacters(characters) {
+        for (let char of characters) {
+            try {
+                const charResponse = await fetch(`https://cors-anywhere.herokuapp.com/https://api.genshin.dev/characters/${char}`);
+                if (!charResponse.ok) throw new Error("Failed to fetch character data");
+                const charData = await charResponse.json();
+                
+                const card = document.createElement("div");
+                card.classList.add("card");
+                
+                card.innerHTML = `
+                    <img src="https://cors-anywhere.herokuapp.com/https://api.genshin.dev/characters/${char}/icon" alt="${charData.name}">
+                    <h2>${charData.name}</h2>
+                    <p>Vision: ${charData.vision}</p>
+                    <p>Weapon: ${charData.weapon}</p>
+                `;
+                container.appendChild(card);
+            } catch (error) {
+                console.error("Error fetching character data:", error);
             }
-            
-            async function displayCharacters(characters) {
-                for (let char of characters) {
-                    try {
-                        const charResponse = await fetch(`https://cors-anywhere.herokuapp.com/https://api.genshin.dev/characters/${char}`);
-                        if (!charResponse.ok) throw new Error("Failed to fetch character data");
-                        const charData = await charResponse.json();
-                        
-                        const card = document.createElement("div");
-                        card.classList.add("card");
-                        
-                        card.innerHTML = `
-                            <img src="https://api.genshin.dev/characters/${char}/icon" alt="${charData.name}">
-                            <h2>${charData.name}</h2>
-                            <p>Vision: ${charData.vision}</p>
-                            <p>Weapon: ${charData.weapon}</p>
-                        `;
-                        container.appendChild(card);
-                    } catch (error) {
-                        console.error("Error fetching character data:", error);
-                    }
-                }
-            }
-            
-            fetchCharacters();
-        });
-    </script>
+        }
+    }
+    
+    fetchCharacters();
+});
+</script>
 </body>
 </html>
-
